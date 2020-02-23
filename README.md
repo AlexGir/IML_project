@@ -2,4 +2,4 @@
 
 What's Up !
 
-You can access the app here : <a href="https://AlexGir.github.io/IML_project/Site-prohet/html/mainPage.html">Prononce</a>
+You can access the app here : <a href="https://alexgir.github.io/IML_project/Site-projet/html/mainPage.html">Prononce</a>
