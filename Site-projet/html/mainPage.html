@@ -1,32 +1,30 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>Interactive machine learning - Caillaud Giraud</title>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <link href="../css/style.css" rel="stylesheet" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  <script src="../js/main.js"></script>
-  <style>
-  body {
-      position: relative; 
-  }
-  #section1 {padding-top:50px;height:500px;color: #fff; background-color: rgb(0, 127, 238);}
-  #section2 {padding-top:50px;height:500px;color: #fff; background-color: #0437df;}
-  #section3 {padding-top:50px;height:500px;color: #fff; background-color: #021e6d;}
-  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </head>
+
+
+
+
 <body data-spy="scroll" data-target=".navbar" data-offset="50">
 
-  <nav class="navbar navbar-inverse navbar-fixed-top">
+  <!--<nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
       <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>                        
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" href="#">IML project</a>
       </div>
@@ -40,23 +38,94 @@
         </div>
       </div>
     </div>
-  </nav>    
+  </nav>-->
 
-  <div id="section1" class="container-fluid">
-    <h1>Choices</h1>
-    <div><img src="../img/button.png" class=" float-center" alt="Cinque Terre"></div>
+  <nav id="navbar-example2" class="navbar bg-dark navbar-light bg-light fixed-top">
+    <a class="navbar-brand text-white" href="#">Navbar</a>
+    <ul class="nav nav-pills">
+      <li class="nav-item">
+        <a class="nav-link" href="#section1">Choices</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#section2">Inputs</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#section3">Results</a>
+      </li>
+    </ul>
+  </nav>
+
+  <div id="section1" class="section container-fluid">
+
+    <h1 class="py-3">Choose your options</h1>
+    <!--<div><img src="../img/button.png" class=" float-center" alt="Cinque Terre"></div>
+    -->
+
+    <div class="d-flex justify-content-around py-1">
+      <div class="zone border border-dark">
+        <div class="dropdown">
+          <button type="button" class="buttonDropDown btn btn-warning btn-lg dropdown-toggle" data-toggle="dropdown">
+            Langue
+          </button>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="#">Français</a>
+            <a class="dropdown-item" href="#">English</a>
+            <a class="dropdown-item" href="#">Espagnolo</a>
+            <a class="dropdown-item disabled" href="#">Chinois</a>
+            <a class="dropdown-item disabled" href="#">Japonais</a>
+            <a class="dropdown-item disabled" href="#">Allemand</a>
+            <a class="dropdown-item disabled" href="#">Russe</a>
+
+          </div>
+        </div>
+      </div>
+      <div class="zone border border-dark">
+        <div class="dropdown">
+          <button type="button" class="buttonDropDown btn btn-warning btn-lg dropdown-toggle" data-toggle="dropdown">
+            Theme
+          </button>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="#">Fruits</a>
+            <a class="dropdown-item" href="#">Légumes</a>
+            <a class="dropdown-item" href="#">Animaux</a>
+            <a class="dropdown-item disabled" href="#">Villes</a>
+            <a class="dropdown-item disabled" href="#">Couleurs</a>
+            <a class="dropdown-item disabled" href="#">Nourritures</a>
+            <a class="dropdown-item disabled" href="#">Pays</a>
+          </div>
+        </div>
+      </div>
+      <div class="zone border border-dark">
+        <div class="dropdown">
+          <button type="button" class="buttonDropDown btn btn-warning btn-lg dropdown-toggle" data-toggle="dropdown">
+            Tolerance
+          </button>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="#">50%</a>
+            <a class="dropdown-item" href="#">70%</a>
+            <a class="dropdown-item" href="#">90%</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 
-  <div id="section2" class="container-fluid">
-    <h1>Input</h1>
-    </br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br>
-    </br></br></br></br></br></br></br></br>
+
+  <div id="section2" class="section container-fluid">
+    <h1 class="py-3">Input</h1>
+
+    <div class="d-flex justify-content-around py-1"></div>
+
   </div>
 
-  <div id="section3" class="container-fluid">
-    <h1>Results and visualization</h1>
-    </br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br>
-    </br></br></br></br></br></br></br></br>
+  <div id="section3" class="section container-fluid">
+    <h1 class="py-3">Results and visualization</h1>
+
   </div>
+  <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+
 </body>
+<script src="../js/mainPage.js"></script>
+
 </html>
