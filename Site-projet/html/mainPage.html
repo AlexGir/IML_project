@@ -55,14 +55,14 @@
     </ul>
   </nav>
 
-  <div id="section1" class="section container-fluid">
+  <div id="section1" class="section container-fluid position-relative">
 
     <h1 class="py-3">Choose your options</h1>
     <!--<div><img src="../img/button.png" class=" float-center" alt="Cinque Terre"></div>
     -->
 
     <div class="d-flex justify-content-around py-1">
-      <div class="zone border border-dark">
+      <div class="zone border border-dark d-flex align-items-center flex-column">
         <div class="dropdown">
           <button type="button" class="buttonDropDown btn btn-warning btn-lg dropdown-toggle" data-toggle="dropdown">
             Langue
@@ -75,11 +75,14 @@
             <a class="dropdown-item disabled" href="#">Japonais</a>
             <a class="dropdown-item disabled" href="#">Allemand</a>
             <a class="dropdown-item disabled" href="#">Russe</a>
-
           </div>
         </div>
+        <div class="Explication pt-4 text-center text-white">
+          <h3 class="pb-3"><strong>You can choose the language you want to train on.</strong></h3>
+          <h3><strong>This will have an impact of the words you would pronounce</strong></h3>
+        </div>
       </div>
-      <div class="zone border border-dark">
+      <div class="zone border border-dark d-flex align-items-center flex-column">
         <div class="dropdown">
           <button type="button" class="buttonDropDown btn btn-warning btn-lg dropdown-toggle" data-toggle="dropdown">
             Theme
@@ -94,8 +97,12 @@
             <a class="dropdown-item disabled" href="#">Pays</a>
           </div>
         </div>
+        <div class="Explication pt-4 text-center text-white">
+          <h3 class="pb-3"><strong>You can choose the theme you want to train on.</strong></h3>
+          <h3><strong>This will specifie a list of words that you will have to pronounce.</strong></h3>
+        </div>
       </div>
-      <div class="zone border border-dark">
+      <div class="zone border border-dark d-flex align-items-center flex-column">
         <div class="dropdown">
           <button type="button" class="buttonDropDown btn btn-warning btn-lg dropdown-toggle" data-toggle="dropdown">
             Tolerance
@@ -106,24 +113,44 @@
             <a class="dropdown-item" href="#">90%</a>
           </div>
         </div>
+        <div class="Explication pt-4 text-center text-white">
+          <h3 class="pb-3"><strong>You can choose the tolerance you want to train with.</strong></h3>
+          <h3><strong>The higher the tolerance, the harder it will be to be correct</strong></h3>
+        </div>
       </div>
     </div>
-
+    <div class="d-flex justify-content-center">
+      <button type="button" onclick="inputCenter()" class="bouton_intersection rounded-circle position-absolute">v</button>
+    </div>
   </div>
 
 
-  <div id="section2" class="section container-fluid">
+  <div id="section2" class="section container-fluid position-relative">
     <h1 class="py-3">Input</h1>
 
-    <div class="d-flex justify-content-around py-1"></div>
-
+    <div class="d-flex flex-row justify-content-center pb-5">
+      <div><h3>Please say : "</h3></div>
+      <div id="Word_to_pronounce"><h3><strong>Hello</strong></h3></div>
+      <div><h3>"</h3></div>
+    </div>
+    <div id="box_vocale" class="d-flex justify-content-around py-1 border border-dark mx-auto">
+      <button type="button" id="start_vocal" class="btn btn-warning btn-lg">
+        <img id="Logo_micro" src="../img/logo_micro.png" />
+      </button>
+      <div id="visu_vocal" class="border border-black">
+        <!-- Vocal visualisation (ondes) -->
+      </div>
+    </div>
+    <div class="d-flex justify-content-center">
+      <button type="button" onclick="botFunction()" class="bouton_intersection rounded-circle position-absolute">v</button>
+    </div>
   </div>
 
   <div id="section3" class="section container-fluid">
     <h1 class="py-3">Results and visualization</h1>
-
   </div>
-  <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+
+  <button onclick="topFunction()" id="myBtn" class="rounded-circle" title="Go to top">^</button>
 
 </body>
 <script src="../js/mainPage.js"></script>

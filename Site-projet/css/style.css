@@ -20,7 +20,8 @@ body {
 
 .zone{
     height: 400px;
-    width: 150px;
+    width: 25%;
+    min-width: 152px;
 }
 
 .buttonDropDown{
@@ -28,6 +29,8 @@ body {
 }
 
 #myBtn {
+    width: 30px;
+    height: 30px;
     display: none; /* Hidden by default */
     position: fixed; /* Fixed/sticky position */
     bottom: 20px; /* Place the button at the bottom of the page */
@@ -35,14 +38,44 @@ body {
     z-index: 99; /* Make sure it does not overlap */
     border: none; /* Remove borders */
     outline: none; /* Remove outline */
-    background-color: red; /* Set a background color */
-    color: white; /* Text color */
+    /*background-color: white; /* Set a background color */
+    /*color: white; /* Text color */
     cursor: pointer; /* Add a mouse pointer on hover */
-    padding: 15px; /* Some padding */
-    border-radius: 10px; /* Rounded corners */
-    font-size: 18px; /* Increase font size */
-  }
+    /*padding: 15px; /* Some padding */
+    /*border-radius: 10px; /* Rounded corners */
+    /*font-size: 18px; /* Increase font size */
+}
   
-  #myBtn:hover {
+#myBtn:hover {
     background-color: #555; /* Add a dark-grey background on hover */
-  }
+}
+
+#box_vocale{
+    width: 80%;
+}
+
+#start_vocal{
+    min-width: 250px;
+    min-height: 250px;
+    max-width: 20%;
+    max-height: 20%;
+}
+
+#visu_vocal{
+    min-width: 375px;
+    min-height: 250px;
+    max-width: 30%;
+    max-height: 20%;
+}
+
+#Logo_micro{
+    max-width: 100%;
+    max-height: 100%
+}
+
+.bouton_intersection{
+    width: 30px;
+    height: 30px;
+    bottom:-15px;
+    z-index: 98;
+}

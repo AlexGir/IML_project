@@ -6,7 +6,7 @@ console.log(mybutton);
 window.onscroll = function() {scrollFunction()};
 
 function scrollFunction() {
-  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+  if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
     mybutton.style.display = "block";
   } else {
     mybutton.style.display = "none";
@@ -17,4 +17,14 @@ function scrollFunction() {
 function topFunction() {
   document.body.scrollTop = 0; // For Safari
   document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+}
+
+function inputCenter() {
+  document.body.scrollTop = 400; // For Safari
+  document.documentElement.scrollTop = 400; // For Chrome, Firefox, IE and Opera
+}
+
+function botFunction() {
+  document.body.scrollTop = 1500; // For Safari
+  document.documentElement.scrollTop = 1500; // For Chrome, Firefox, IE and Opera
 }
