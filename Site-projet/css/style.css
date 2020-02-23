@@ -78,4 +78,16 @@ body {
     height: 30px;
     bottom:-15px;
     z-index: 98;
+    border: none; /* Remove borders */
+    outline: none; /* Remove outline */
+    /*background-color: white; /* Set a background color */
+    /*color: white; /* Text color */
+    cursor: pointer; /* Add a mouse pointer on hover */
+}
+.bouton_intersection:hover {
+    background-color: #555; /* Add a dark-grey background on hover */
+}
+
+.Explication{
+    padding-top: 15%;
 }
