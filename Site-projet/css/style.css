@@ -22,6 +22,7 @@ body {
     height: 400px;
     width: 25%;
     min-width: 152px;
+    background-color: rgba(0, 114, 214, 0.849);
 }
 
 .buttonDropDown{
@@ -84,10 +85,14 @@ body {
     /*color: white; /* Text color */
     cursor: pointer; /* Add a mouse pointer on hover */
 }
+
 .bouton_intersection:hover {
     background-color: #555; /* Add a dark-grey background on hover */
 }
 
+.bouton_intersection:active {
+    outline-style:none;
+}
 .Explication{
     padding-top: 15%;
 }
