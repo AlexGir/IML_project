@@ -10,7 +10,12 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>  
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/speech-commands"></script>    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="https://unpkg.com/@tensorflow/tfjs"></script>
+  <script src="https://unpkg.com/@tensorflow-models/speech-commands"></script>
+
 </head>
 
 
@@ -64,17 +69,17 @@
     <div class="d-flex justify-content-around py-1">
       <div class="zone p-3 rounded-sm border border-dark d-flex align-items-center flex-column">
         <div class="dropdown">
-          <button type="button" class="buttonDropDown btn btn-warning btn-lg dropdown-toggle" data-toggle="dropdown">
+          <button id="buttonLanguage" type="button" class="buttonDropDown btn btn-warning btn-lg dropdown-toggle" data-toggle="dropdown">
             Langue
           </button>
           <div class="dropdown-menu">
-            <a class="dropdown-item" href="#">Français</a>
-            <a class="dropdown-item" href="#">English</a>
-            <a class="dropdown-item" href="#">Espagnolo</a>
-            <a class="dropdown-item disabled" href="#">Chinois</a>
-            <a class="dropdown-item disabled" href="#">Japonais</a>
-            <a class="dropdown-item disabled" href="#">Allemand</a>
-            <a class="dropdown-item disabled" href="#">Russe</a>
+            <a onclick="setLanguage('Français')" class="dropdown-item" href="#">Français</a>
+            <a onclick="setLanguage('English')" class="dropdown-item" href="#">English</a>
+            <a onclick="setLanguage('Espagnolo')" class="dropdown-item" href="#">Espagnolo</a>
+            <a onclick="setLanguage('Chinois')" class="dropdown-item disabled" href="#">Chinois</a>
+            <a onclick="setLanguage('Japonais')" class="dropdown-item disabled" href="#">Japonais</a>
+            <a onclick="setLanguage('Allemand')" class="dropdown-item disabled" href="#">Allemand</a>
+            <a onclick="setLanguage('Russe')" class="dropdown-item disabled" href="#">Russe</a>
           </div>
         </div>
         <div class="Explication text-center text-white">
@@ -84,17 +89,17 @@
       </div>
       <div class="zone p-3 rounded-sm border border-dark d-flex align-items-center flex-column">
         <div class="dropdown">
-          <button type="button" class="buttonDropDown btn btn-warning btn-lg dropdown-toggle" data-toggle="dropdown">
+          <button id="buttonTheme" type="button" class="buttonDropDown btn btn-warning btn-lg dropdown-toggle" data-toggle="dropdown">
             Theme
           </button>
           <div class="dropdown-menu">
-            <a class="dropdown-item" href="#">Fruits</a>
-            <a class="dropdown-item" href="#">Légumes</a>
-            <a class="dropdown-item" href="#">Animaux</a>
-            <a class="dropdown-item disabled" href="#">Villes</a>
-            <a class="dropdown-item disabled" href="#">Couleurs</a>
-            <a class="dropdown-item disabled" href="#">Nourritures</a>
-            <a class="dropdown-item disabled" href="#">Pays</a>
+            <a onclick="setTheme('Fruits')" class="dropdown-item" href="#">Fruits</a>
+            <a onclick="setTheme('Légumes')" class="dropdown-item" href="#">Légumes</a>
+            <a onclick="setTheme('Animaux')" class="dropdown-item" href="#">Animaux</a>
+            <a onclick="setTheme('Villes')" class="dropdown-item disabled" href="#">Villes</a>
+            <a onclick="setTheme('Couleurs')" class="dropdown-item disabled" href="#">Couleurs</a>
+            <a onclick="setTheme('Nourritures')" class="dropdown-item disabled" href="#">Nourritures</a>
+            <a onclick="setTheme('Pays')" class="dropdown-item disabled" href="#">Pays</a>
           </div>
         </div>
         <div class="Explication text-center text-white">
@@ -104,13 +109,15 @@
       </div>
       <div class="zone p-3 rounded-sm border border-dark d-flex align-items-center flex-column">
         <div class="dropdown">
-          <button type="button" class="buttonDropDown btn btn-warning btn-lg dropdown-toggle" data-toggle="dropdown">
+          <button id="buttonTolerance" type="button" class="buttonDropDown btn btn-warning btn-lg dropdown-toggle" data-toggle="dropdown">
             Tolerance
           </button>
           <div class="dropdown-menu">
-            <a class="dropdown-item" href="#">50%</a>
-            <a class="dropdown-item" href="#">70%</a>
-            <a class="dropdown-item" href="#">90%</a>
+            <a onclick="setTolerance(0.3)" class="dropdown-item" href="#">30%</a>
+            <a onclick="setTolerance(0.5)" class="dropdown-item" href="#">50%</a>
+            <a onclick="setTolerance(0.7)" class="dropdown-item" href="#">70%</a>
+            <a onclick="setTolerance(0.9)" class="dropdown-item" href="#">90%</a>
+            <a onclick="setTolerance(0.99)" class="dropdown-item" href="#">99%</a>
           </div>
         </div>
         <div class="Explication text-center text-white">
@@ -129,12 +136,12 @@
     <h1 class="py-3">Input</h1>
 
     <div class="d-flex flex-row justify-content-center pb-5">
-      <div><h3>Please say : "</h3></div>
-      <div id="Word_to_pronounce"><h3><strong>Hello</strong></h3></div>
+      <div><h3>Press the button and say five time : "</h3></div>
+      <div id="Word_to_pronounce"><h3><strong>Seven</strong></h3></div>
       <div><h3>"</h3></div>
     </div>
     <div id="box_vocale" class="d-flex justify-content-around py-1 border border-dark mx-auto">
-      <button type="button" id="start_vocal" class="btn btn-warning btn-lg">
+      <button type="button" onclick= "switchAudio()" id="start_vocal" class="btn btn-warning btn-lg">
         <img id="Logo_micro" src="../img/logo_micro.png" />
       </button>
       <div id="visu_vocal" class="border border-black">
@@ -148,6 +155,13 @@
 
   <div id="section3" class="section container-fluid">
     <h1 class="py-3">Results and visualization</h1>
+    <div>results : </div><div id ="resultEnd"></div>
+    <div id="box_res" class="d-flex justify-content-around py-1 border border-dark mx-auto">
+      <div id="box_graph">
+      </div>
+      <div id="box_percent">
+      </div>
+    </div>
   </div>
 
   <button onclick="topFunction()" id="myBtn" class="rounded-circle" title="Go to top">^</button>
