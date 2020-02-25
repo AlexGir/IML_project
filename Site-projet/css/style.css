@@ -1,3 +1,7 @@
+html{
+    scroll-behavior: smooth;
+}
+
 body {
     position: relative; 
 }
@@ -55,7 +59,18 @@ body {
     width: 80%;
 }
 
+#box_res{
+    width: 80%;
+}
+
 #start_vocal{
+    min-width: 250px;
+    min-height: 250px;
+    max-width: 20%;
+    max-height: 20%;
+}
+
+#box_percent{
     min-width: 250px;
     min-height: 250px;
     max-width: 20%;
@@ -67,6 +82,14 @@ body {
     min-height: 250px;
     max-width: 30%;
     max-height: 20%;
+}
+
+#box_graph{
+    min-width: 375px;
+    min-height: 250px;
+    max-width: 30%;
+    max-height: 20%;
+    background-color: white;
 }
 
 #Logo_micro{
