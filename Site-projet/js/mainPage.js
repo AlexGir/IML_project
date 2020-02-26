@@ -16,6 +16,9 @@ let avancement = 0;
 //Bouton qui permet de revenir en haut de la page
 let mybutton = document.getElementById("myBtn");
 
+function restartAvancement(){
+  avancement = 0;
+}
 function changeWordToTrain(){
   wordToTr = wordsToTrain[avancement] 
 }
@@ -157,6 +160,7 @@ function shuffle(array) {
 
 //Selection du language
 function setLanguage(l) {
+  restartAvancement();
   language = l;
   switch (language) {
     case "francais":
@@ -182,7 +186,9 @@ function setLanguage(l) {
 
 //Selection du theme
 function setTheme(t) {
+  restartAvancement();
   theme = t;
+  
   changeWordToTrain()
   document.getElementById("buttonTheme").innerHTML = t;
   console.log("changement de theme");
