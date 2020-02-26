@@ -143,13 +143,22 @@ var complementMetadataURL = { "fancais-number" : "my_model_fr/metadata.json",
 function loadModel(){
   console.log("creation du recognizer");
   let mod = language + "-" + theme;
+    let modelURLtest = URL + complementModelURL[mod];
+    let metadataURLtest = URL + complementModelURL[mod];
+    
+    console.log("modelURLtest : " + modelURLtest);
+    console.log("metadataURLtest : " + metadataURLtest);
+    
+  mod = mod.toLowerCase();
   console.log(mod);
-  //let modelURL = URL + complementModelURL[mod];
-  //let metadataURL = URL + complementModelURL[mod];
-
+  let modelURL = URL + complementModelURL[mod];
+  let metadataURL = URL + complementModelURL[mod];
+    
+    console.log("modelURL : " + modelURL);
+    console.log("metadataURL : " + metadataURL);
   //partie à modifier pour avoir plusieurs model (laguages et themes)
-  let modelURL = "https://alexgir.github.io/IML_project/Site-projet/my_model/model.json";
-  let metadataURL = "https://alexgir.github.io/IML_project/Site-projet/my_model/metadata.json";
+  //let modelURL = "https://alexgir.github.io/IML_project/Site-projet/my_model/model.json";
+  //let metadataURL = "https://alexgir.github.io/IML_project/Site-projet/my_model/metadata.json";
   console.log(modelURL);
   console.log(metadataURL);
   recognizer = speechCommands.create("BROWSER_FFT"
