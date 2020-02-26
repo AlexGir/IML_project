@@ -16,7 +16,7 @@ let francaisNumber = ["deux","quatre","trois","un"];
 let mybutton = document.getElementById("myBtn");
 
 //Affichage du mot à prononcer
-document.getElementById("Word_to_pronounce").innerHTML = wordsToTrain[0];
+document.getElementById("Word_to_pronounce").innerHTML = "<h3><strong>" + wordsToTrain[0] + "</strong></h3>";
 
 //Gestion du graphique de suivi
 var ctx = document.getElementById('canvas').getContext('2d');
@@ -87,7 +87,7 @@ function setLanguage(l){
   document.getElementById("buttonLanguage").innerHTML = l;
   console.log("changement de langue");
   wordsToTrain = [spanishNumber[0],spanishNumber[1]];
-  document.getElementById("Word_to_pronounce").innerHTML = wordsToTrain[0];
+  document.getElementById("Word_to_pronounce").innerHTML = "<h3><strong>" + wordsToTrain[0] + "</strong></h3>";
 }
 
 //Selection du theme
@@ -96,7 +96,7 @@ function setTheme(t){
   document.getElementById("buttonTheme").innerHTML = t;
   console.log("changement de theme");
   wordsToTrain = [spanishNumber[0],spanishNumber[1]];
-  document.getElementById("Word_to_pronounce").innerHTML = wordsToTrain[0];
+  document.getElementById("Word_to_pronounce").innerHTML = "<h3><strong>" + wordsToTrain[0] + "</strong></h3>";
 }
 
 //Selection de la tolerence
@@ -142,23 +142,39 @@ let complementMetadataURL = { "francais-number" : "my_model_fr/metadata.json",
 //Gestion du model
 function loadModel(){
 
+
+  for( let key in complementModelURL){
+    console.log(complementModelURL[key]);
+  }
+    
   console.log("creation du recognizer");
   let mod = language + "-" + theme;
-
+  console.log("mod = " + mod.toLowerCase());
+   let modelURLtest = "" + URL + "" + complementModelURL[mod];
+    let metadataURLtest = "" + URL + "" + complementMetadataURL[mod];
+    
+    console.log("modelURLtest : " + modelURLtest);
+    console.log("metadataURLtest : " + metadataURLtest);
+    console.log("-------------------");
+    console.log("complément test : " + complementModelURL.mod);
   mod = mod.toLowerCase();
-  //console.log(mod);
-  let modelURL = "" + URL + "" + complementModelURL[mod];
-  let metadataURL = "" + URL + "" + complementModelURL[mod];
-
+  console.log(mod);
+  let modelURLa = "" + URL + "" + complementModelURL[mod];
+  let metadataURLa = "" + URL + "" + complementMetadataURL[mod];
+   
+    
+    console.log("modelURL : " + modelURLa);
+    console.log("metadataURL : " + metadataURLa);
+         console.log("-------------------");
+    console.log("complément : " + complementModelURL.mod);
   //partie à modifier pour avoir plusieurs model (laguages et themes)
-  //let modelURL = "https://alexgir.github.io/IML_project/Site-projet/my_model/model.json";
-  //let metadataURL = "https://alexgir.github.io/IML_project/Site-projet/my_model/metadata.json";
-  console.log(modelURL);
-  console.log(metadataURL);
-  recognizer = speechCommands.create("BROWSER_FFT"
-  ,undefined,
-  modelURL,
-  metadataURL
+  let modelURL = "https://alexgir.github.io/IML_project/Site-projet/my_model/model.json";
+  let metadataURL = "https://alexgir.github.io/IML_project/Site-projet/my_model/metadata.json";
+  console.log(modelURLa);
+  console.log(metadataURLa);
+  recognizer = speechCommands.create("BROWSER_FFT",undefined,
+  modelURLa,
+  metadataURLa
   );
   Promise.all([
       recognizer.ensureModelLoaded()
