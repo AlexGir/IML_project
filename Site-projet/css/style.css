@@ -71,7 +71,7 @@ body {
 }
 
 #box_percent{
-    min-width: 250px;
+    min-width: 450px;
     min-height: 250px;
     max-width: 20%;
     max-height: 20%;
@@ -119,4 +119,8 @@ body {
 
 .Explication{
     padding-top: 15%;
+}
+
+#buttonNext{
+    display: none;
 }
