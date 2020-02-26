@@ -143,22 +143,26 @@ var complementMetadataURL = { "fancais-number" : "my_model_fr/metadata.json",
 function loadModel(){
   console.log("creation du recognizer");
   let mod = language + "-" + theme;
-    let modelURLtest = URL + complementModelURL[mod];
-    let metadataURLtest = URL + complementModelURL[mod];
+   let modelURLtest = "" + URL + "" + complementModelURL[mod];
+    let metadataURLtest = "" + URL + "" + complementModelURL[mod];
     
     console.log("modelURLtest : " + modelURLtest);
     console.log("metadataURLtest : " + metadataURLtest);
-    
+    console.log("-------------------");
+    console.log("complément test : " + complementModelURL[mod]);
   mod = mod.toLowerCase();
   console.log(mod);
-  let modelURL = URL + complementModelURL[mod];
-  let metadataURL = URL + complementModelURL[mod];
+  let modelURLa = "" + URL + "" + complementModelURL[mod];
+  let metadataURLa = "" + URL + "" + complementModelURL[mod];
+   
     
-    console.log("modelURL : " + modelURL);
-    console.log("metadataURL : " + metadataURL);
+    console.log("modelURL : " + modelURLa);
+    console.log("metadataURL : " + metadataURLa);
+         console.log("-------------------");
+    console.log("complément : " + complementModelURL[mod]);
   //partie à modifier pour avoir plusieurs model (laguages et themes)
-  //let modelURL = "https://alexgir.github.io/IML_project/Site-projet/my_model/model.json";
-  //let metadataURL = "https://alexgir.github.io/IML_project/Site-projet/my_model/metadata.json";
+  let modelURL = "https://alexgir.github.io/IML_project/Site-projet/my_model/model.json";
+  let metadataURL = "https://alexgir.github.io/IML_project/Site-projet/my_model/metadata.json";
   console.log(modelURL);
   console.log(metadataURL);
   recognizer = speechCommands.create("BROWSER_FFT"
