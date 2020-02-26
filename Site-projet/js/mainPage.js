@@ -12,6 +12,8 @@ let wordToTr ="";
 
 let spanishNumber = ["dos", "quatro", "tres", "uno"];
 let francaisNumber = ["deux", "quatre", "trois", "un"];
+let spanishFruit = ["fraisa", "limon", "pera", "tomato"];
+let francaisFruit = ["citron", "fraises", "poire", "tomate"];
 let avancement = 0;
 //Bouton qui permet de revenir en haut de la page
 let mybutton = document.getElementById("myBtn");
@@ -213,7 +215,7 @@ function switchAudio() {
     console.log("arret d'enregistrement");
     stopListening();
     botFunction();
-  }, 6000);
+  }, 4000);
 
 }
 
@@ -222,14 +224,14 @@ const URL = "https://alexgir.github.io/IML_project/Site-projet/";
 let complementModelURL = {
   "francais-number": "my_model_fr/model.json",
   "spanish-number": "my_model/model.json",
-  "francais-fruit": "my_model_fr/model.json",
-  "spanish-fruit": "my_model/model.json"
+  "francais-fruit": "my_model_fruit_fr/model.json",
+  "spanish-fruit": "my_model_fruit_spanish/model.json"
 };
 let complementMetadataURL = {
   "francais-number": "my_model_fr/metadata.json",
   "spanish-number": "my_model/metadata.json",
-  "francais-fruit": "my_model_fr/metadata.json",
-  "spanish-fruit": "my_model/metadata.json"
+  "francais-fruit": "my_model_fruit_fr/metadata.json",
+  "spanish-fruit": "my_model_fruit_spanish/metadata.json"
 };
 //const modelURL = URL+'model.json';
 //const metadataURL = URL+'metadata.json';
