@@ -160,8 +160,16 @@
           Désolé, votre navigateur ne prend pas en charge &lt;canvas&gt;.
         </canvas>
       </div>
-      <div id="box_percent" class="">
+      <div id="box_percent" class="d-flex flex-column">
         <div id ="resultEnd" class= "align-items-center text-center">No result</div>
+        <div id="choix_suite" class= "d-flex align-items-center text-center">
+          <button id="buttonAgain" type="button" class="pr-2 mr-2 btn btn-warning btn-lg" onclick="switchAudio()">
+            Try Again 🎤
+          </button>
+          <button id="buttonNext" type="button" class="btn btn-warning btn-lg" onclick="nextWord()">
+            Next ➡️
+          </button>
+        </div>
       </div>
     </div>
   </div>

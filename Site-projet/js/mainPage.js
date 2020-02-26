@@ -6,41 +6,96 @@ let language = "spanish";
 let theme = "number";
 
 let modelLoaded = false;
-let wordsToTrain = ["dos","quatro"];
+let wordsToTrain = ["dos", "quatro", "tres", "uno"];
 let lastScores = 0;
+let wordToTr ="";
 
-let spanishNumber = ["dos","quatro","tres","uno"];
-let francaisNumber = ["deux","quatre","trois","un"];
-
+let spanishNumber = ["dos", "quatro", "tres", "uno"];
+let francaisNumber = ["deux", "quatre", "trois", "un"];
+let avancement = 0;
 //Bouton qui permet de revenir en haut de la page
 let mybutton = document.getElementById("myBtn");
 
+function changeWordToTrain(){
+  wordToTr = wordsToTrain[avancement] 
+}
 //Affichage du mot à prononcer
-document.getElementById("Word_to_pronounce").innerHTML = "<h3><strong>" + wordsToTrain[0] + "</strong></h3>";
+changeWordToTrain();
+document.getElementById("Word_to_pronounce").innerHTML = "<h3><strong>" + wordToTr + "</strong></h3>";
+//let nom;
 
-//Gestion du graphique de suivi
-var ctx = document.getElementById('canvas').getContext('2d');
-var chart = new Chart(ctx, {
+let ctx = document.getElementById('canvas').getContext('2d');
+
+function CreateChart(nom) {
+  nom = new Chart(ctx, {
     // The type of chart we want to create
     type: 'line',
     // The data for our dataset
     data: {
-        labels: [],
-        datasets: [{
-            label: 'Similarity',
-            backgroundColor: 'rgb(255, 99, 132)',
-            borderColor: 'rgb(255, 99, 132)',
-            data: []
-        }]
+      labels: [],
+      datasets: [{
+        label: 'Similarity',
+        backgroundColor: 'rgb(255, 99, 132)',
+        borderColor: 'rgb(255, 99, 132)',
+        data: []
+      }]
     },
     options: {}
+  });
+  return nom;
+}
+
+let charUN;
+charUN = CreateChart(charUN);
+let charDEUX;
+charDEUX = CreateChart(charDEUX);
+let charTROIS;
+charTROIS = CreateChart(charTROIS);
+let charQUATRE;
+charQUATRE = CreateChart(charQUATRE);
+
+let charUNO;
+charUNO = CreateChart(charUNO);
+let charDOS;
+charDOS = CreateChart(charDOS);
+let charTRES;
+charTRES = CreateChart(charTRES);
+let charQUATRO;
+charQUATRO = CreateChart(charQUATRO);
+
+let listeGraph = {
+  "un": charUN,
+  "deux": charDEUX,
+  "trois": charTROIS,
+  "quatre": charQUATRE,
+  "uno": charUNO,
+  "dos": charDOS,
+  "tres": charTRES,
+  "quatro": charQUATRO
+};
+
+//Gestion du graphique de suivi
+let chart = new Chart(ctx, {
+  // The type of chart we want to create
+  type: 'line',
+  // The data for our dataset
+  data: {
+    labels: [],
+    datasets: [{
+      label: 'Similarity',
+      backgroundColor: 'rgb(255, 99, 132)',
+      borderColor: 'rgb(255, 99, 132)',
+      data: []
+    }]
+  },
+  options: {}
 });
 
 //Ajout de données au graphique
 function addData(chart, label, data) {
   chart.data.labels.push(label);
   chart.data.datasets.forEach((dataset) => {
-      dataset.data.push(data);
+    dataset.data.push(data);
   });
   chart.update();
 }
@@ -49,13 +104,13 @@ function addData(chart, label, data) {
 function removeData(chart) {
   chart.data.labels.pop();
   chart.data.datasets.forEach((dataset) => {
-      dataset.data.pop();
+    dataset.data.pop();
   });
   chart.update();
 }
 
 // When the user scrolls down 20px from the top of the document, show the button
-window.onscroll = function() {scrollFunction()};
+window.onscroll = function () { scrollFunction() };
 
 function scrollFunction() {
   if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
@@ -81,134 +136,166 @@ function botFunction() {
   document.documentElement.scrollTop = 1500; // For Chrome, Firefox, IE and Opera
 }
 
+
+function shuffle(array) {
+  var currentIndex = array.length, temporaryValue, randomIndex;
+
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+  return array;
+}
+
 //Selection du language
-function setLanguage(l){
+function setLanguage(l) {
   language = l;
+  switch (language) {
+    case "francais":
+      francaisNumber = shuffle(francaisNumber);
+      for (let i = 0; i < 4; i++) {
+        wordsToTrain[i] = francaisNumber[i];
+      }
+      break;
+    case "spanish":
+      spanishNumber = shuffle(spanishNumber);
+      for (let i = 0; i < 4; i++) {
+        wordsToTrain[i] = spanishNumber[i];
+      }
+      break;
+  }
+  changeWordToTrain();
+  console.log(l);
   document.getElementById("buttonLanguage").innerHTML = l;
   console.log("changement de langue");
-  wordsToTrain = [spanishNumber[0],spanishNumber[1]];
-  document.getElementById("Word_to_pronounce").innerHTML = "<h3><strong>" + wordsToTrain[0] + "</strong></h3>";
+  //wordsToTrain = [spanishNumber[0],spanishNumber[1]];
+  document.getElementById("Word_to_pronounce").innerHTML = "<h3><strong>" + wordToTr + "</strong></h3>";
 }
 
 //Selection du theme
-function setTheme(t){
+function setTheme(t) {
   theme = t;
+  changeWordToTrain()
   document.getElementById("buttonTheme").innerHTML = t;
   console.log("changement de theme");
-  wordsToTrain = [spanishNumber[0],spanishNumber[1]];
-  document.getElementById("Word_to_pronounce").innerHTML = "<h3><strong>" + wordsToTrain[0] + "</strong></h3>";
+  wordsToTrain = [spanishNumber[0], spanishNumber[1]];
+  document.getElementById("Word_to_pronounce").innerHTML = "<h3><strong>" + wordToTr + "</strong></h3>";
 }
 
 //Selection de la tolerence
-function setTolerance(tol){
+function setTolerance(tol) {
   tolerance = tol;
-  document.getElementById("buttonTolerance").innerHTML = (tol*100).toString() +" %";
+  document.getElementById("buttonTolerance").innerHTML = (tol * 100).toString() + " %";
   console.log("changement de tolerance");
 }
 
 //Enregistrement de la voix de l'utilisateur et obtention des resultats
 let recognizer;
-function switchAudio(){
-      //reset
-      lastScores = 0;
- //   if(!modelLoaded){
-      console.log("load model");
-      loadModel();
- //   }else{
- //     console.log("debut d'enregistrement");
- //     startListening();
- //   }
-    setTimeout(function(){ 
-      console.log("arret d'enregistrement");
-      stopListening();
-      botFunction();
-    }, 6000);
+function switchAudio() {
+  //reset
+  lastScores = 0;
+  //   if(!modelLoaded){
+  console.log("load model");
+  loadModel();
+  //   }else{
+  //     console.log("debut d'enregistrement");
+  //     startListening();
+  //   }
+  setTimeout(function () {
+    console.log("arret d'enregistrement");
+    stopListening();
+    botFunction();
+  }, 6000);
 
 }
 
 
 const URL = "https://alexgir.github.io/IML_project/Site-projet/";
-let complementModelURL = { "francais-number" : "my_model_fr/model.json", 
-            "spanish-number" : "my_model/model.json", 
-            "francais-fruit" : "my_model_fr/model.json",
-            "spanish-fruit" : "my_model/model.json" };
-let complementMetadataURL = { "francais-number" : "my_model_fr/metadata.json", 
-            "spanish-number" : "my_model/metadata.json", 
-            "francais-fruit" : "my_model_fr/metadata.json",
-            "spanish-fruit" : "my_model/metadata.json" };           
+let complementModelURL = {
+  "francais-number": "my_model_fr/model.json",
+  "spanish-number": "my_model/model.json",
+  "francais-fruit": "my_model_fr/model.json",
+  "spanish-fruit": "my_model/model.json"
+};
+let complementMetadataURL = {
+  "francais-number": "my_model_fr/metadata.json",
+  "spanish-number": "my_model/metadata.json",
+  "francais-fruit": "my_model_fr/metadata.json",
+  "spanish-fruit": "my_model/metadata.json"
+};
 //const modelURL = URL+'model.json';
 //const metadataURL = URL+'metadata.json';
 
 //Gestion du model
-function loadModel(){
+function loadModel() {
 
-
-  for( let key in complementModelURL){
-    console.log(complementModelURL[key]);
-  }
-    
   console.log("creation du recognizer");
   let mod = language + "-" + theme;
-  console.log("mod = " + mod.toLowerCase());
-   let modelURLtest = "" + URL + "" + complementModelURL[mod];
-    let metadataURLtest = "" + URL + "" + complementMetadataURL[mod];
-    
-    console.log("modelURLtest : " + modelURLtest);
-    console.log("metadataURLtest : " + metadataURLtest);
-    console.log("-------------------");
-    console.log("complément test : " + complementModelURL.mod);
+  
   mod = mod.toLowerCase();
-  console.log(mod);
-  let modelURLa = "" + URL + "" + complementModelURL[mod];
-  let metadataURLa = "" + URL + "" + complementMetadataURL[mod];
-   
-    
-    console.log("modelURL : " + modelURLa);
-    console.log("metadataURL : " + metadataURLa);
-         console.log("-------------------");
-    console.log("complément : " + complementModelURL.mod);
+ 
+  let modelURL = "" + URL + "" + complementModelURL[mod];
+  let metadataURL = "" + URL + "" + complementMetadataURL[mod];
+
   //partie à modifier pour avoir plusieurs model (laguages et themes)
   let modelURL = "https://alexgir.github.io/IML_project/Site-projet/my_model/model.json";
   let metadataURL = "https://alexgir.github.io/IML_project/Site-projet/my_model/metadata.json";
-  console.log(modelURLa);
-  console.log(metadataURLa);
-  recognizer = speechCommands.create("BROWSER_FFT",undefined,
-  modelURLa,
-  metadataURLa
+  console.log(modelURL);
+  console.log(metadataURL);
+  recognizer = speechCommands.create("BROWSER_FFT", undefined,
+    modelURL,
+    metadataURL
   );
   Promise.all([
-      recognizer.ensureModelLoaded()
-    ]).then(function(){
-      console.log("gestion des mots reconnus");
-      words = recognizer.wordLabels();
-      modelLoaded = true;
-      startListening();
-    })
+    recognizer.ensureModelLoaded()
+  ]).then(function () {
+    console.log("gestion des mots reconnus");
+    words = recognizer.wordLabels();
+    modelLoaded = true;
+    startListening();
+  })
 }
 
 //Ecoute de l'utilisateur et obtention d'un score
-function startListening(){
+function startListening() {
   console.log("start listening");
-  recognizer.listen(({scores}) => {
-      scores = Array.from(scores).map((s, i) => ({score: s, word: words[i]}));
-      scores.sort((s1, s2) => s2.score - s1.score);
-      for(let i=0;i<5;i++){
-        //On n'affiche le rsultat que s'il correspond au mot voulu
-        if(scores[i].word == wordsToTrain[0]){
-          if(lastScores<scores[i].score*100){
-            lastScores = scores[i].score*100;
-          }
+  recognizer.listen(({ scores }) => {
+    scores = Array.from(scores).map((s, i) => ({ score: s, word: words[i] }));
+    scores.sort((s1, s2) => s2.score - s1.score);
+    for (let i = 0; i < 5; i++) {
+      //On n'affiche le rsultat que s'il correspond au mot voulu
+      if (scores[i].word == wordToTr) {
+        if (lastScores < scores[i].score * 100) {
+          lastScores = scores[i].score * 100;
         }
       }
-  }, {probabilityThreshold: tolerance});
+    }
+  }, { probabilityThreshold: tolerance });
   console.log("end listening");
 }
 
 //Fin de l'écoute de l'utilisateur et ajout de données au graphique
-function stopListening(){
+function stopListening() {
   recognizer.stopListening();
   console.log("fin d'enregistrement");
-  addData(chart,wordsToTrain[0], lastScores);
-  document.querySelector('#resultEnd').textContent = (Math.round(lastScores*100)/100) + "%";
-  
+  let charActuel = listeGraph[wordToTr];
+  console.log(charActuel);
+  addData(charActuel, wordToTr, lastScores);
+  document.querySelector('#resultEnd').textContent = (Math.round(lastScores * 100) / 100) + "%";
+}
+
+function nextWord(){
+  avancement++;
+  changeWordToTrain();
+  document.getElementById("Word_to_pronounce").innerHTML = "<h3><strong>" + wordToTr + "</strong></h3>";
+  console.log(avancement);
+  inputCenter();
 }
