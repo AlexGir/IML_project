@@ -363,7 +363,7 @@ function startListening() {
                 }
             }
         }
-    }, { probabilityThreshold: 0.70 });
+    }, { probabilityThreshold: tolerance });
     console.log("end listening");
 }
 
@@ -375,7 +375,7 @@ function stopListening() {
     console.log(charActuel);
     addData(charActuel, wordToTr, lastScores);
     let res = (Math.round(lastScores * 100) / 100);
-    if(res > tolerance){
+    if(res > 70){
         document.getElementById("buttonNext").style.display = "block";
         document.querySelector('#resultEnd').textContent = res + "% ✅";
     } else {
