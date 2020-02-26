@@ -246,8 +246,8 @@ function loadModel() {
   let metadataURL = "" + URL + "" + complementMetadataURL[mod];
 
   //partie à modifier pour avoir plusieurs model (laguages et themes)
-  let modelURL = "https://alexgir.github.io/IML_project/Site-projet/my_model/model.json";
-  let metadataURL = "https://alexgir.github.io/IML_project/Site-projet/my_model/metadata.json";
+  //let modelURL = "https://alexgir.github.io/IML_project/Site-projet/my_model/model.json";
+  //let metadataURL = "https://alexgir.github.io/IML_project/Site-projet/my_model/metadata.json";
   console.log(modelURL);
   console.log(metadataURL);
   recognizer = speechCommands.create("BROWSER_FFT", undefined,
