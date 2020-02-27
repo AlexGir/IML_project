@@ -4,12 +4,12 @@ let tolerance = 0.75;
 let language = "spanish";
 //Le theme de base est les nombres
 let theme = "number";
-
-let modelLoaded = false;
+//Liste de mots initial
 let wordsToTrain = ["dos", "quatro", "tres", "uno"];
+//Dernier score enregistré
 let lastScores = 0;
 let wordToTr = "";
-
+//Listes de mots possibles
 let spanishNumber = ["dos", "quatro", "tres", "uno"];
 let francaisNumber = ["deux", "quatre", "trois", "un"];
 let spanishFruit = ["fraisa", "limon", "pera", "tomato"];
@@ -18,19 +18,24 @@ let avancement = 0;
 //Bouton qui permet de revenir en haut de la page
 let mybutton = document.getElementById("myBtn");
 
+//Gere le changement de categorie
 function restartAvancement() {
     avancement = 0;
 }
+
+//Gere le changement de mot apres avoir reconnu un mot
 function changeWordToTrain() {
     wordToTr = wordsToTrain[avancement]
 }
-//Affichage du mot à prononcer
+
+//Affichage du mot à prononcer (initialement)
 changeWordToTrain();
 document.getElementById("Word_to_pronounce").innerHTML = "<h3><strong>" + wordToTr + "</strong></h3>";
-//let nom;
 
+//Contexte pour le graphique
 let ctx = document.getElementById('canvas').getContext('2d');
 
+//Fontion de création de graphe, renvoie un nouveau graphique
 function CreateChart(nom) {
     nom = new Chart(ctx, {
         // The type of chart we want to create
@@ -50,6 +55,7 @@ function CreateChart(nom) {
     return nom;
 }
 
+//Creation des graphiques
 let charUN;
 charUN = CreateChart(charUN);
 let charDEUX;
@@ -61,15 +67,6 @@ charQUATRE = CreateChart(charQUATRE);
 
 let listeGraph;
 
-/*spanishNumber.forEach(element => {
-    //listeGraph[element].push(CreateChart(element))
-    window["chart" + element];
-    //onsole.log(chart);
-    listeGraph[element] = CreateChart(window["chart" + element]);
-
-});*/
-
-//console.log(listeGraph);
 let charUNO;
 charUNO = CreateChart(charUNO);
 let charDOS;
@@ -97,6 +94,7 @@ charTomato = CreateChart(charTomato);
 let charPera;
 charPera = CreateChart(charPera);
 
+//Liste contenant tous les graphiques
 listeGraph = {
     "un": charUN,
     "deux": charDEUX,
@@ -151,7 +149,7 @@ function removeData(chart) {
     chart.update();
 }
 
-// When the user scrolls down 20px from the top of the document, show the button
+//Affichage du bouton de scroll auto lorsque le joueur scroll
 window.onscroll = function () { scrollFunction() };
 
 function scrollFunction() {
@@ -162,34 +160,33 @@ function scrollFunction() {
     }
 }
 
-// When the user clicks on the button, scroll to the top of the document
+// Scroll en haut de la page 
 function topFunction() {
     document.body.scrollTop = 0; // For Safari
     document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
 }
 
+//Scroll au centre de la page
 function inputCenter() {
     document.body.scrollTop = 545; // For Safari
     document.documentElement.scrollTop = 545; // For Chrome, Firefox, IE and Opera
 }
 
+//Scroll en bas de la page
 function botFunction() {
     document.body.scrollTop = 1500; // For Safari
     document.documentElement.scrollTop = 1500; // For Chrome, Firefox, IE and Opera
 }
 
-
+//Rend un tableau aleatoire
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
 
-    // While there remain elements to shuffle...
     while (0 !== currentIndex) {
 
-        // Pick a remaining element...
         randomIndex = Math.floor(Math.random() * currentIndex);
         currentIndex -= 1;
 
-        // And swap it with the current element.
         temporaryValue = array[currentIndex];
         array[currentIndex] = array[randomIndex];
         array[randomIndex] = temporaryValue;
@@ -233,7 +230,6 @@ function setLanguage(l) {
     console.log(l);
     document.getElementById("buttonLanguage").innerHTML = l;
     console.log("changement de langue");
-    //wordsToTrain = [spanishNumber[0],spanishNumber[1]];
     document.getElementById("Word_to_pronounce").innerHTML = "<h3><strong>" + wordToTr + "</strong></h3>";
 }
 
@@ -284,25 +280,25 @@ function setTolerance(tol) {
 
 //Enregistrement de la voix de l'utilisateur et obtention des resultats
 let recognizer;
+
+//function lancer lors de l'appuie du bouton enregistrement
 function switchAudio() {
-    //reset
+    //le score est reset en interne
     lastScores = 0;
-    //   if(!modelLoaded){
     console.log("load model");
+    //Chargement du model
     loadModel();
-    //   }else{
-    //     console.log("debut d'enregistrement");
-    //     startListening();
-    //   }
+    //L'enregistrement du joueur dure 4 secondes
     setTimeout(function () {
         console.log("arret d'enregistrement");
         stopListening();
+        //Scroll automatique jusqu'a la prochaine section
         botFunction();
     }, 4000);
 
 }
 
-
+//Gestion des models
 const URL = "https://alexgir.github.io/IML_project/Site-projet/";
 let complementModelURL = {
     "francais-number": "my_model_fr/model.json",
@@ -316,35 +312,28 @@ let complementMetadataURL = {
     "francais-fruit": "my_model_fruit_fr/metadata.json",
     "spanish-fruit": "my_model_fruit_spanish/metadata.json"
 };
-//const modelURL = URL+'model.json';
-//const metadataURL = URL+'metadata.json';
 
-//Gestion du model
+//Gestion du chargement des models en fonctions des preferences du joueur
 function loadModel() {
-
     console.log("creation du recognizer");
     let mod = language + "-" + theme;
-
     mod = mod.toLowerCase();
-
     let modelURL = "" + URL + "" + complementModelURL[mod];
     let metadataURL = "" + URL + "" + complementMetadataURL[mod];
-
-    //partie à modifier pour avoir plusieurs model (laguages et themes)
-    //let modelURL = "https://alexgir.github.io/IML_project/Site-projet/my_model/model.json";
-    //let metadataURL = "https://alexgir.github.io/IML_project/Site-projet/my_model/metadata.json";
     console.log(modelURL);
     console.log(metadataURL);
+    //Création du recognizer en utilisant speechCommands
     recognizer = speechCommands.create("BROWSER_FFT", undefined,
         modelURL,
         metadataURL
     );
+
+    // Préparation des mots et lancement de l'enregistrement de l'utilisateur
     Promise.all([
         recognizer.ensureModelLoaded()
     ]).then(function () {
         console.log("gestion des mots reconnus");
         words = recognizer.wordLabels();
-        modelLoaded = true;
         startListening();
     })
 }
@@ -353,8 +342,9 @@ function loadModel() {
 function startListening() {
     console.log("start listening");
     recognizer.listen(({ scores }) => {
+        //Obtention des scores liés à chaque mots
         scores = Array.from(scores).map((s, i) => ({ score: s, word: words[i] }));
-        scores.sort((s1, s2) => s2.score - s1.score);
+        //scores.sort((s1, s2) => s2.score - s1.score);
         for (let i = 0; i < 5; i++) {
             //On n'affiche le rsultat que s'il correspond au mot voulu
             if (scores[i].word == wordToTr) {
@@ -371,10 +361,13 @@ function startListening() {
 function stopListening() {
     recognizer.stopListening();
     console.log("fin d'enregistrement");
+    //Recuperation du graphe correspondant au mot actuel
     let charActuel = listeGraph[wordToTr];
     console.log(charActuel);
+    //Ajout du score actuel
     addData(charActuel, wordToTr, lastScores);
     let res = (Math.round(lastScores * 100) / 100);
+    //L'affichage change en fonction du resultat de l'utilisateur
     if(res > 70){
         document.getElementById("buttonNext").style.display = "block";
         document.querySelector('#resultEnd').textContent = res + "% ✅";
@@ -384,6 +377,7 @@ function stopListening() {
     }
 }
 
+// Gestion du changement de mot par le systeme
 function nextWord() {
     console.log(wordsToTrain);
     document.getElementById("buttonNext").style.display = "none";
